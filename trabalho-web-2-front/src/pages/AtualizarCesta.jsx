@@ -152,7 +152,7 @@ class AtualizarCesta extends React.Component {
 
   teste = async () => {
     if (!(await estaAutenticado())) {
-      this.props.history.push("/")
+      //this.props.history.push("/")
     }
   }
   e = (params, campo, i, e) => {

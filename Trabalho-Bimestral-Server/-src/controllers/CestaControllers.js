@@ -30,6 +30,7 @@ module.exports = {
   },
   async listCestas(req,res) {  
     //res.status(200).send(await Cesta.find().sort([['data',-1]]).limit(12))  //produção
+    //res.status(200).send(await Cesta.find({},"cesta -_id").populate('cesta.user', 'nome -_id'))//.sort([['data',-1]]).limit(12)).populate('user', 'nome -_id') //teste
     res.status(200).send(await Cesta.find({},"cesta -_id").sort([['data',-1]]).limit(12)) //teste
     },
 };

@@ -13,7 +13,6 @@ class TabelaDeCotacao extends React.Component {
   render() {
     return (
       <Container>
-        {console.log(this.props.get)}
         {this.props.get.map(item => (
           <Table key={item._id}>
             <thead>
@@ -39,7 +38,8 @@ class TabelaDeCotacao extends React.Component {
             <tfoot>
               <tr>
                 <td>Feito por {item.user.nome}</td>
-                <td>mês referente a {item.mes}</td>
+                {/* <td>Referente a {item.data.getUTCMonth()}</td> */}
+                <td>Referente a {item.data}</td>
                 <td className="text-right">
                   <Button onClick={e => this.props.edit(item)} className="btn-round" color="success" size="sm">
                     <i className="tim-icons icon-pencil" />Editar

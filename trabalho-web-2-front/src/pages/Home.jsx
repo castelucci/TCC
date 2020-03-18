@@ -37,8 +37,8 @@ class Home extends React.Component {
     disabled: false
   };
   componentWillMount() { //this.teste()
-   }
-
+  }
+  
   componentDidMount() {
     this.getCotação()
   }
@@ -48,7 +48,12 @@ class Home extends React.Component {
         { Authorization: 'Bearer ' + localStorage.getItem('token') }
     }).then((response) => {
       console.log(response);
-      // this.setState({ get: response.data })
+      let get = []
+      response.data.forEach(e => {
+        get.push(e.cesta)
+      })
+      this.setState({ get})
+       
       // let mes = []; let user = []; let marca = []
       // response.data.map(i => {
       //   mes.push(i.mes)
@@ -92,6 +97,7 @@ class Home extends React.Component {
       return (
         <>
           <div className="section">
+{/*             
             <Nav className="justify-content-center">
               <NavItem className="nav-link">
                 <Button color="info"
@@ -124,7 +130,9 @@ class Home extends React.Component {
               </NavItem>
               <NavItem className="nav-link">
                 <UncontrolledDropdown>
-                  <DropdownToggle disabled={/*this.state.disabled*/true} caret data-toggle="dropdown">
+                  <DropdownToggle disabled={
+                    //this.state.disabled 
+                    true} caret data-toggle="dropdown">
                     Marca
                     </DropdownToggle>
                   <DropdownMenu>
@@ -138,6 +146,7 @@ class Home extends React.Component {
 
               </NavItem>
             </Nav>
+          */}
           </div>
           <Tabela get={this.state.get} edit={this.edit} deletar={this.deletar} />
 
@@ -147,7 +156,62 @@ class Home extends React.Component {
     return (<div>Erro ao acessar o servidor</div>)
   }
   render() {
-    return (<>{/*this.paga()*/}</>
+    return (<>
+      <div className="section">
+{/*             
+        <Nav className="justify-content-center">
+          <NavItem className="nav-link">
+            <Button color="info"
+              onClick={e => this.getCotação()}
+            >Tudo</Button>
+          </NavItem>
+          <NavItem className="nav-link">
+            <UncontrolledDropdown>
+              <DropdownToggle disabled={this.state.disabled} caret data-toggle="dropdown" >
+                Mês
+              </DropdownToggle>
+              <DropdownMenu>
+                {this.state.mes.map(i => (
+                  <DropdownItem key={i} onClick={e => this.getCotação("mes:" + i)}>{i}</DropdownItem>
+                ))}
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </NavItem>
+          <NavItem className="nav-link">
+            <UncontrolledDropdown>
+              <DropdownToggle disabled={this.state.disabled} caret data-toggle="dropdown">
+                Usuario
+                </DropdownToggle>
+              <DropdownMenu>
+                {this.state.user.map(i => (
+                  <DropdownItem key={i._id} onClick={e => this.getCotação("user:" + i._id)}>{i.nome}</DropdownItem>
+                ))}
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </NavItem>
+          <NavItem className="nav-link">
+            <UncontrolledDropdown>
+              <DropdownToggle disabled={
+                //this.state.disabled 
+                true} caret data-toggle="dropdown">
+                Marca
+                </DropdownToggle>
+              <DropdownMenu>
+                {this.state.marca.map(i => (
+                  <DropdownItem onClick={e => this.getCotação("marca:" + i)}>{i}</DropdownItem>
+                ))}
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </NavItem>
+          <NavItem className="nav-link">
+
+          </NavItem>
+        </Nav>
+      */}
+      </div>
+      <Tabela get={this.state.get} edit={this.edit} deletar={this.deletar} />
+
+    </>
     );
   }
 }
