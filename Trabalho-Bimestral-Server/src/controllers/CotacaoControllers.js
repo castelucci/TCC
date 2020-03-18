@@ -39,10 +39,4 @@ module.exports = {
       res.status(201).send()
     } catch (error) { res.status(404).send(resultado) }///mud
   },
-  async listMarcas(req, res) {
-    let resp = await Marca.findOne()
-    let status;
-    (resp) ? status = 200 : status = 404
-    res.status(status).send(resp)
-  },
 };
